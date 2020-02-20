@@ -1,11 +1,12 @@
-var nodemailer = require("nodemailer");
-var ejs = require("ejs");
+const nodemailer = require("nodemailer");
+let ejs = require("ejs");
 
-const dotenv = require('dotenv');
-dotenv.config();
+let path = require('path');
 
-console.log(`Your port is ${process.env.SMTP_PORT}`); // 8626
-/* 
+require("dotenv").config({
+  path: "./.env"
+});
+
 var transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
@@ -17,7 +18,7 @@ var transporter = nodemailer.createTransport({
 });
 
 ejs.renderFile(
-  __dirname + "/templates/mailer.ejs",
+  path.join(__dirname, "/templates/mailer.ejs"),
   {
     name: "User",
     images: {
@@ -45,4 +46,3 @@ ejs.renderFile(
     }
   }
 );
- */
